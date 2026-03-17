@@ -1,0 +1,19 @@
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+}
+.timer{
+    font-size: 2rem;
+    color: black;
+    padding: 1rem;
+}
+
+.icon {
+  color: black;
+    transform: scale(2);
+    padding-left: 0.4rem;
+}
+

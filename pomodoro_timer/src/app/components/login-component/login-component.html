@@ -1,1 +1,17 @@
-<p>login-component works!</p>
+<div class="login-container">
+  <form class="login-form">
+    <h1>Login</h1>
+    
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput />
+    </mat-form-field>
+    
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput type="password" />
+    </mat-form-field>
+    
+    <button aria-label="Submit" matButton="tonal" color="primary" (click)="onSubmit()">Submit</button>
+  </form>
+</div>
