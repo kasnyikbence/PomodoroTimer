@@ -1,6 +1,6 @@
 {
-  "printWidth": 100,
-  "singleQuote": true,
+  "printWidth": 150,
+  "singleQuote": false,
   "overrides": [
     {
       "files": "*.html",
