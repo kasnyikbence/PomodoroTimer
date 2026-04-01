@@ -1,13 +1,18 @@
+<app-navbar-component></app-navbar-component>
+
 <div class="timer-container">
   <h1>Pomodoro Timer</h1>
   <div class="timer-display">
-    <span class="timer">25:00</span>
+    <span class="timer">{{ formatTime(timeLeft()) }}</span>
+  </div>
+  <div class="phase-display">
+    <span class="phase">{{ phase() === "focus" ? "Fókusz" : "Szünet" }}</span>
   </div>
   <div class="timer-controls">
-    <button aria-label="Időzítő indítása" mat-button>
+    <button aria-label="Időzítő indítása" mat-button (click)="startTimer()">
       <mat-icon class="icon">play_circle_outline</mat-icon>
     </button>
-    <button aria-label="Időzítő leállítása" mat-button>
+    <button aria-label="Időzítő leállítása" mat-button (click)="stopTimer()">
       <mat-icon class="icon">pause_circle_outline</mat-icon>
     </button>
   </div>

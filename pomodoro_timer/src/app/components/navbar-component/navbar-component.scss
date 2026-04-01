@@ -1,0 +1,64 @@
+:host {
+  --bg-body: #f0f4ff;
+  --bg-surface: #ffffff;
+  --border-default: #e8eaf6;
+
+  --text-primary: #a5d380;
+  --primary: #689164;
+  --primary-muted: #66a75d;
+  --primary-pastel: #e8eaf6;
+
+  --success-text: #2e7d32;
+  --success-bg: #e8f5e9;
+  --warning-text: #e65100;
+  --warning-bg: #fff3e0;
+  --error-text: #ef9a9a;
+  --muted-text: #9fabda;
+
+  --font-family: "Nunito", sans-serif;
+}
+
+/* Header */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 48px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.logo-section {
+  display: flex;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.logo-text-first {
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-family: var(--font-family);
+  color: var(--text-primary);
+  cursor: default;
+}
+
+.logo-text-second {
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-family: var(--font-family);
+  color: var(--primary-muted);
+  cursor: default;
+}
+
+.logo-icon {
+  width: 32px;
+  height: 32px;
+  color: var(--primary);
+}
+
+.setting-button {
+  border: var(--primary) 1px solid;
+  background: none;
+  cursor: pointer;
+}

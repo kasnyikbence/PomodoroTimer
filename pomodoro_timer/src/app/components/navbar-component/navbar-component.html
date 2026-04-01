@@ -1,1 +1,25 @@
-<p>navbar-component works!</p>
+<header class="topbar">
+  <div class="logo-section">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path
+          d="M9 12l2 2 4-4"
+          stroke="white"
+          stroke-width="2"
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+    <span class="logo-text-first">Focus</span>
+    <span class="logo-text-second">Quest</span>
+  </div>
+  <div class="settings">
+    <button class="settings-button" aria-label="Beállítások" (click)="toSettings()">
+      <mat-icon class="icon">settings</mat-icon>
+    </button>
+  </div>
+</header>
+
