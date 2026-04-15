@@ -1,25 +1,29 @@
+<app-background-component></app-background-component>
 <app-navbar-component></app-navbar-component>
 
-<div class="container">
-  <button (click)="returnToHome()">
-    <mat-icon class="icon">arrow_back</mat-icon>
-  </button>
-  <h1>Beállítások</h1>
+<div class="back-button-container">
+<button class="back-button" (click)="returnToHome()">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+</div>
+
+<div class="settings-container">
+  <h1>Settings</h1>
   <form [formGroup]="settingsForm" (ngSubmit)="saveSettings()">
     <div class="input-group">
-      <label>Fókusz idő (perc): </label>
+      <label>Focus Time (minutes): </label>
       <input type="number" formControlName="focusTime" />
     </div>
 
     <div class="input-group">
-      <label>Rövid pihenő (perc): </label>
+      <label>Short Break Time (minutes): </label>
       <input type="number" formControlName="shortBreakTime" />
     </div>
 
     <div class="input-group">
-      <label>Hosszú pihenő (perc): </label>
+      <label>Long Break Time (minutes): </label>
       <input type="number" formControlName="longBreakTime" />
     </div>
-    <button type="submit" [disabled]="settingsForm.invalid">Beállítások Mentése</button>
+    <button class="submit-button" type="submit" [disabled]="settingsForm.invalid">Save Settings</button>
   </form>
 </div>

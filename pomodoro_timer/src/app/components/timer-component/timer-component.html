@@ -1,19 +1,33 @@
+<app-background-component></app-background-component>
 <app-navbar-component></app-navbar-component>
 
 <div class="timer-container">
-  <h1>Pomodoro Timer</h1>
+  <div class="durations-wrapper">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="timerType" id="focusRadio" value="focus" checked="">
+            <label class="form-check-label btn" for="focusRadio">
+                focus
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="timerType" id="shortBreakRadio" value="short">
+            <label class="form-check-label btn" for="shortBreakRadio">
+                short break
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="timerType" id="longBreakRadio" value="long">
+            <label class="form-check-label btn" for="longBreakRadio">
+                long break
+            </label>
+        </div>
+    </div>
   <div class="timer-display">
     <span class="timer">{{ formatTime(timeLeft()) }}</span>
   </div>
-  <div class="phase-display">
-    <span class="phase">{{ phase() === "focus" ? "Fókusz" : "Szünet" }}</span>
-  </div>
   <div class="timer-controls">
-    <button aria-label="Időzítő indítása" mat-button (click)="startTimer()">
-      <mat-icon class="icon">play_circle_outline</mat-icon>
-    </button>
-    <button aria-label="Időzítő leállítása" mat-button (click)="stopTimer()">
-      <mat-icon class="icon">pause_circle_outline</mat-icon>
+    <button class="btn start-btn" (click)="startTimer()">
+      <span class="" id="play-icon">{{startText}}</span>
     </button>
   </div>
 </div>

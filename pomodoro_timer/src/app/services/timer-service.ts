@@ -9,18 +9,19 @@ export class TimerService {
 
     private timeRemaining = signal(this.settingsService.focusTime() * 60);
     private timerIsRunning = signal(false);
-    private currentPhase = signal<"focus" | "break">("focus");
+    private currentPhase = "focus";
 
     readonly timeLeft = this.timeRemaining.asReadonly();
     readonly isRunning = this.timerIsRunning.asReadonly();
-    readonly phase = this.currentPhase.asReadonly();
+    readonly phase = this.currentPhase;
 
     private interValId: number | null = null;
 
     //Timer control methods
     startTimer(): void {
         if (this.timerIsRunning()) {
-            return;
+           this.stopTimer();
+           return;
         }
 
         console.log("Timer started");
@@ -31,26 +32,13 @@ export class TimerService {
         this.interValId = window.setInterval(() => {
             this.timeRemaining.update((time) => {
                 if (time <= 1) {
-                    return this.switchPhase();
+                    return this.settingsService.focusTime() * 60;
                 }
 
                 console.log(`Time remaining: ${time - 1} seconds`);
                 return time - 1;
             });
         }, 1000);
-    }
-
-    private switchPhase(): number {
-        if (this.currentPhase() === "focus") {
-            this.currentPhase.set("break");
-            alert("Focus finished. Break time!");
-
-            return this.settingsService.shortBreakTime() * 60;
-        }
-
-        this.currentPhase.set("focus");
-        alert("Break finished. Back to focus!");
-        return this.settingsService.focusTime() * 60;
     }
 
     stopTimer(): void {
@@ -72,7 +60,6 @@ export class TimerService {
             return;
         }
         this.stopTimer();
-        this.currentPhase.set("focus");
         this.timeRemaining.set(this.settingsService.focusTime() * 60);
         console.log("Timer reset to initial focus time");
     }

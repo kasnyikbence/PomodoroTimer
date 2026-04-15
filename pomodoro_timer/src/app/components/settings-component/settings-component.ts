@@ -6,11 +6,13 @@ import { Router } from "@angular/router";
 import { TimerService } from "../../services/timer-service";
 import { NavbarComponent } from "../navbar-component/navbar-component";
 import { MatIcon } from "@angular/material/icon";
+import { BackgroundComponent } from "../background-component/background-component";
+
 
 @Component({
   selector: "app-settings-component",
   standalone: true,
-  imports: [ReactiveFormsModule, MatInputModule, NavbarComponent, MatIcon],
+  imports: [ReactiveFormsModule, MatInputModule, NavbarComponent, MatIcon, BackgroundComponent],
   templateUrl: "./settings-component.html",
   styleUrl: "./settings-component.scss",
 })

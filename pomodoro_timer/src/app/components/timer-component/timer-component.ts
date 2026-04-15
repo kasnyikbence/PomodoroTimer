@@ -1,30 +1,27 @@
 import { Component, inject, OnDestroy} from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
-import { MatIcon } from "@angular/material/icon";
 import { TimerService } from "../../services/timer-service";
-import { Router } from "@angular/router";
 import { NavbarComponent } from "../navbar-component/navbar-component";
+import { BackgroundComponent } from "../background-component/background-component";
 
 @Component({
     selector: "app-timer-component",
     standalone: true,
-    imports: [MatButtonModule, MatIcon, NavbarComponent],
+    imports: [MatButtonModule, NavbarComponent, BackgroundComponent],
     templateUrl: "./timer-component.html",
     styleUrl: "./timer-component.scss",
 })
 export class TimerComponent implements OnDestroy {
   private readonly timerService = inject(TimerService);
-  private router = inject(Router);
       
   public timeLeft = this.timerService.timeLeft;
   public phase = this.timerService.phase;
 
+  public startText = "start";
+
     startTimer(): void {
         this.timerService.startTimer();
-    }
-
-    stopTimer(): void {
-        this.timerService.stopTimer();
+        this.startText = this.timerService.isRunning() ? "pause" : "start";
     }
 
 
