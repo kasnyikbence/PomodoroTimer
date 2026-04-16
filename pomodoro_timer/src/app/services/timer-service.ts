@@ -20,25 +20,47 @@ export class TimerService {
     //Timer control methods
     startTimer(): void {
         if (this.timerIsRunning()) {
-           this.stopTimer();
-           return;
+            this.stopTimer();
+            return;
         }
 
         console.log("Timer started");
-        console.log('Current settings - Focus Time:', this.settingsService.focusTime(), 'min, Short Break:', this.settingsService.shortBreakTime(), 'min, Long Break:', this.settingsService.longBreakTime(), 'min');
+        console.log(
+            "Current settings - Focus Time:",
+            this.settingsService.focusTime(),
+            "min, Short Break:",
+            this.settingsService.shortBreakTime(),
+            "min, Long Break:",
+            this.settingsService.longBreakTime(),
+            "min",
+        );
 
         this.timerIsRunning.set(true);
 
         this.interValId = window.setInterval(() => {
             this.timeRemaining.update((time) => {
                 if (time <= 1) {
-                    return this.settingsService.focusTime() * 60;
+                    this.endTimer();
+                    this.phaseSelection(this.currentPhase);
                 }
 
                 console.log(`Time remaining: ${time - 1} seconds`);
                 return time - 1;
             });
         }, 1000);
+    }
+
+    phaseSelection(phase: string): void {
+        this.stopTimer();
+
+        this.currentPhase = phase;
+        this.timeRemaining.set(
+            phase === "focus" ? this.settingsService.focusTime() * 60 
+            : phase === "short" ? this.settingsService.shortBreakTime() * 60
+            : phase === "long" ? this.settingsService.longBreakTime() * 60 
+            : 0
+        );
+        console.log(`Phase changed to: ${phase}`);;
     }
 
     stopTimer(): void {
@@ -61,7 +83,6 @@ export class TimerService {
         }
         this.stopTimer();
         this.timeRemaining.set(this.settingsService.focusTime() * 60);
-        console.log("Timer reset to initial focus time");
     }
 
     endTimer(): void {

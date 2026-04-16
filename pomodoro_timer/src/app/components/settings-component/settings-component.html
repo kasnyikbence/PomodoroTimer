@@ -9,7 +9,7 @@
 
 <div class="settings-container">
   <h1>Settings</h1>
-  <form [formGroup]="settingsForm" (ngSubmit)="saveSettings()">
+  <form class="form-group" [formGroup]="settingsForm" (ngSubmit)="saveSettings()">
     <div class="input-group">
       <label>Focus Time (minutes): </label>
       <input type="number" formControlName="focusTime" />

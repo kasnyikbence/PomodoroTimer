@@ -24,6 +24,18 @@ export class TimerComponent implements OnDestroy {
         this.startText = this.timerService.isRunning() ? "pause" : "start";
     }
 
+    phaseSelection(event: any): void {
+        if (event.target.value === 'focus') {
+            this.timerService.phaseSelection('focus');
+        }
+        else if (event.target.value === 'short') {
+            this.timerService.phaseSelection('short');
+        }
+        else if (event.target.value === 'long') {
+            this.timerService.phaseSelection('long');
+        }
+    }
+
 
     readonly formatTime = (time: number): string => {
         const minutes = Math.floor(time / 60);

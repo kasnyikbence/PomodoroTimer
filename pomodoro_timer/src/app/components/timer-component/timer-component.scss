@@ -5,7 +5,7 @@ $font: "Jersey 10", sans-serif;
 
 $glass-border: rgba(255, 255, 255, 0.2);
 $accent-color: #ffffff;
-$settings-btn-bg: rgba(255, 255, 255, 0.25);
+$btn-bg: rgba(255, 255, 255, 0.25);
 
 $btn-font-size: 2rem;
 
@@ -31,12 +31,33 @@ $btn-font-size: 2rem;
     gap: 1rem;
   }
 
-  .form-check-input {
-    display: none;
+  .form-check {
+    .form-check-input {
+      display: none;
 
-    &:checked {
-      background-color: $primary-white;
-      border-color: $primary-white;
+      &:checked + .form-check-label {
+        background: $primary-white;
+        color: $text-color;
+        border: 2px solid $primary-white;
+      }
+    }
+
+    .form-check-label {
+      background: $btn-bg;
+      color: $accent-color;
+      border: 2px solid $glass-border;
+      border-radius: 500px;
+      padding: 0.5rem 2rem;
+      font-size: $btn-font-size;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        background: $primary-white;
+        color: $text-color;
+        border: 2px solid $primary-white;
+      }
     }
   }
 
@@ -72,7 +93,7 @@ $btn-font-size: 2rem;
     }
 
     &:hover {
-      background: $settings-btn-bg;
+      background: $btn-bg;
       color: $accent-color;
       border: 2px solid $glass-border;
     }

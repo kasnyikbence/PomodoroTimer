@@ -22,7 +22,7 @@ export class SettingsComponent implements OnInit {
   public settingsService = inject(SettingsService);
 
   settingsForm = new FormGroup({
-    focusTime: new FormControl(this.settingsService.focusTime(), Validators.min(1)),
+    focusTime: new FormControl(this.settingsService.focusTime()),
     shortBreakTime: new FormControl(this.settingsService.shortBreakTime(), Validators.min(1)),
     longBreakTime: new FormControl(this.settingsService.longBreakTime(), Validators.min(1)),
   });

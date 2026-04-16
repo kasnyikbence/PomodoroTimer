@@ -4,20 +4,20 @@
 <div class="timer-container">
   <div class="durations-wrapper">
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="timerType" id="focusRadio" value="focus" checked="">
-            <label class="form-check-label btn" for="focusRadio">
+            <input class="form-check-input" type="radio" name="timerType" id="focusRadio" value="focus" checked="" (change)="phaseSelection($event)">
+            <label class="form-check-label" for="focusRadio">
                 focus
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="timerType" id="shortBreakRadio" value="short">
-            <label class="form-check-label btn" for="shortBreakRadio">
+            <input class="form-check-input" type="radio" name="timerType" id="shortBreakRadio" value="short" (change)="phaseSelection($event)">
+            <label class="form-check-label" for="shortBreakRadio">
                 short break
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="timerType" id="longBreakRadio" value="long">
-            <label class="form-check-label btn" for="longBreakRadio">
+            <input class="form-check-input" type="radio" name="timerType" id="longBreakRadio" value="long" (change)="phaseSelection($event)">
+            <label class="form-check-label" for="longBreakRadio">
                 long break
             </label>
         </div>
