@@ -1,4 +1,4 @@
-import { inject, Injectable, signal, effect } from "@angular/core";
+import { inject, Injectable, signal, effect, untracked } from "@angular/core";
 import { SettingsService } from "./settings-service";
 
 @Injectable({
@@ -23,7 +23,9 @@ export class TimerService {
             const shortBreakTime = this.settingsService.shortBreakTime();
             const longBreakTime = this.settingsService.longBreakTime();
 
-            if (!this.timerIsRunning()) {
+            const isRunning = untracked(() => this.timerIsRunning());
+
+            if (!isRunning) {
                 if (this.currentPhase === "focus") {
                     this.timeRemaining.set(focusTime * 60);
                 } else if (this.currentPhase === "short") {
