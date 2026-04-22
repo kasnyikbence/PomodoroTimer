@@ -1,8 +1,10 @@
-// Új változók a modern hatásért
 $glass-bg: rgba(255, 255, 255, 0.15);
 $glass-border: rgba(255, 255, 255, 0.2);
 $accent-color: #ffffff;
 $settings-btn-bg: rgba(255, 255, 255, 0.25);
+
+$font: "Jersey 10", sans-serif;
+$font-size: 1.5rem;
 
 .navbar {
   height: 70px; 
@@ -13,7 +15,6 @@ $settings-btn-bg: rgba(255, 255, 255, 0.25);
   
   background: $glass-bg;
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid $glass-border;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 
@@ -25,8 +26,42 @@ $settings-btn-bg: rgba(255, 255, 255, 0.25);
     text-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
 
+  .dropdown-menu {
+  width: 10rem;
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background-color: $glass-bg;
+  border: 1px solid $glass-border;
+  font-size: $font-size;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem;
+  min-width: 180px;
+  z-index: 100;
+  animation: fadeIn 0.2s ease;
 
-  .settings-btn {
+  .logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: $accent-color;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}
+}
+  .dropdown-btn {
     background: $settings-btn-bg;
     color: $accent-color;
     border: 1px solid $glass-border;

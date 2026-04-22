@@ -1,23 +1,29 @@
-import { Component, inject } from '@angular/core';
-import { MatButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
-import { Router } from '@angular/router';
+import { Component, inject } from "@angular/core";
+import { MatIcon } from "@angular/material/icon";
+import { Router } from "@angular/router";
+import { AuthService } from "../../services/auth-service";
 
 @Component({
-  selector: 'app-navbar-component',
+  selector: "app-navbar-component",
   imports: [MatIcon],
-  templateUrl: './navbar-component.html',
-  styleUrl: './navbar-component.scss',
+  templateUrl: "./navbar-component.html",
+  styleUrl: "./navbar-component.scss",
 })
 export class NavbarComponent {
   private router = inject(Router);
+  readonly authService = inject(AuthService);
+  isDropdownOpen: boolean = false;
 
-
-  toSettings(): void {
-    this.router.navigateByUrl('settings');
+  logout() {
+    this.authService.logout();
+    this.router.navigateByUrl("login");
   }
 
-  toHome(): void {
-    this.router.navigateByUrl('home');
+  toggleMenu() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  toSettings(): void {
+    this.router.navigateByUrl("settings");
   }
 }

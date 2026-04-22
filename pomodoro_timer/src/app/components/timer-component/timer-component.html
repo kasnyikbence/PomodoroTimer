@@ -23,7 +23,7 @@
         </div>
     </div>
   <div class="timer-display">
-    <span class="timer">{{ formatTime(timeLeft()) }}</span>
+    <span class="timer">{{ timeLeft() | timerFormatPipe }}</span>
   </div>
   <div class="timer-controls">
     <button class="btn start-btn" (click)="startTimer()">

@@ -1,17 +1,27 @@
+<app-background-component></app-background-component>
+<app-navbar-component></app-navbar-component>
+
 <div class="register-container">
-  <form class="register-form">
-    <h1>Register</h1>
-    
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input matInput />
-    </mat-form-field>
-    
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input matInput type="password" />
-    </mat-form-field>
-    
-    <button aria-label="Submit" matButton="tonal" color="primary" (click)="onSubmit()">Submit</button>
+  <h2>Create an Account</h2>
+  <form [formGroup]="registerForm" class="register-form">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" (focus)="clearError()" placeholder="Enter your email" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" (focus)="clearError()" placeholder="Enter your password" />
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" formControlName="confirmPassword" (focus)="clearError()" placeholder="Confirm your password" />
+    </div>
+    @if (this.errorMessage) {
+      <span class="error-message">{{ this.errorMessage }}</span>
+    }
+    <button class="submit" type="submit" (click)="onSubmit()">Register</button>
+    <p class="login-link">Already have an account? <a (click)="toLogin()">Login here</a></p>
   </form>
 </div>

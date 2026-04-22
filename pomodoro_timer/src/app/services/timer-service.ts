@@ -1,4 +1,4 @@
-import { inject, Injectable, signal } from "@angular/core";
+import { inject, Injectable, signal, effect } from "@angular/core";
 import { SettingsService } from "./settings-service";
 
 @Injectable({
@@ -16,6 +16,24 @@ export class TimerService {
     readonly phase = this.currentPhase;
 
     private interValId: number | null = null;
+
+    constructor() {
+        effect(() => {
+            const focusTime = this.settingsService.focusTime();
+            const shortBreakTime = this.settingsService.shortBreakTime();
+            const longBreakTime = this.settingsService.longBreakTime();
+
+            if (!this.timerIsRunning()) {
+                if (this.currentPhase === "focus") {
+                    this.timeRemaining.set(focusTime * 60);
+                } else if (this.currentPhase === "short") {
+                    this.timeRemaining.set(shortBreakTime * 60);
+                } else if (this.currentPhase === "long") {
+                    this.timeRemaining.set(longBreakTime * 60);
+                }
+            }
+        }, {allowSignalWrites: true});
+    }
 
     //Timer control methods
     startTimer(): void {

@@ -3,11 +3,12 @@ import { MatButtonModule } from "@angular/material/button";
 import { TimerService } from "../../services/timer-service";
 import { NavbarComponent } from "../navbar-component/navbar-component";
 import { BackgroundComponent } from "../background-component/background-component";
+import { TimerFormatPipePipe } from "../../pipes/timer-format-pipe-pipe";
 
 @Component({
     selector: "app-timer-component",
     standalone: true,
-    imports: [MatButtonModule, NavbarComponent, BackgroundComponent],
+    imports: [MatButtonModule, NavbarComponent, BackgroundComponent, TimerFormatPipePipe],
     templateUrl: "./timer-component.html",
     styleUrl: "./timer-component.scss",
 })
@@ -37,11 +38,11 @@ export class TimerComponent implements OnDestroy {
     }
 
 
-    readonly formatTime = (time: number): string => {
-        const minutes = Math.floor(time / 60);
-        const seconds = time % 60;
-        return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-    };
+    // readonly formatTime = (time: number): string => {
+    //     const minutes = Math.floor(time / 60);
+    //     const seconds = time % 60;
+    //     return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+    // };
 
     ngOnDestroy(): void {
         console.log("TimerComponent destroyed");
