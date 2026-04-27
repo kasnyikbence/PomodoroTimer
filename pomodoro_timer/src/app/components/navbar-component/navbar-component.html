@@ -3,7 +3,7 @@
 
   @if (authService.isAuthenticated()) {
   <div class="nav-actions">
-    <button class="dropdown-btn" (click)="toggleMenu()">
+    <button class="dropdown-btn" (click)="toggleMenu()" appClickoutsideDirective (clickOutside)="isDropdownOpen = false">
       <svg
         class="chevron"
         [class.rotated]="isDropdownOpen"

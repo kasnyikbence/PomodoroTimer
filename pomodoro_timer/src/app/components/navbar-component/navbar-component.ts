@@ -2,10 +2,11 @@ import { Component, inject } from "@angular/core";
 import { MatIcon } from "@angular/material/icon";
 import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth-service";
+import { ClickoutsideDirective } from "../../directives/clickoutside-directive";
 
 @Component({
   selector: "app-navbar-component",
-  imports: [MatIcon],
+  imports: [MatIcon, ClickoutsideDirective],
   templateUrl: "./navbar-component.html",
   styleUrl: "./navbar-component.scss",
 })

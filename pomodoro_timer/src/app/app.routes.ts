@@ -1,31 +1,27 @@
 import { Routes } from '@angular/router';
-import { TimerComponent } from './components/timer-component/timer-component';
-import { LoginComponent } from './components/login-component/login-component';
-import { RegisterComponent } from './components/register-component/register-component';
-import { SettingsComponent } from './components/settings-component/settings-component';
 import { authGuardGuard} from './guards/auth-guard-guard';
 
 export const routes: Routes = [
     {
         path: 'home',
-        component: TimerComponent,
+        loadComponent: () => import('./components/timer-component/timer-component').then(m => m.TimerComponent),
         canActivate: [authGuardGuard]
     },
 
     {
         path: 'login',
-        component: LoginComponent
+        loadComponent: () => import('./components/login-component/login-component').then(m => m.LoginComponent)
     },
 
     {
         path: 'register',
-        component: RegisterComponent
+        loadComponent: () => import('./components/register-component/register-component').then(m => m.RegisterComponent)
 
     },
 
     {
         path: 'settings',
-        component: SettingsComponent,
+        loadComponent: () => import('./components/settings-component/settings-component').then(m => m.SettingsComponent),
         canActivate: [authGuardGuard]
     },
 
