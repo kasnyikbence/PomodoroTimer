@@ -26,8 +26,7 @@ export class LoginComponent {
     password: this.passwordControl,
   });
 
-
-  onSubmit() {
+  async onSubmit() {
     if (!this.loginForm.valid) {
       this.errorMessage = "Invalid email or password";
       console.log("Form is invalid");
@@ -37,10 +36,10 @@ export class LoginComponent {
     const email = this.emailControl.value;
     const password = this.passwordControl.value;
 
-    const success = this.authService.login(email, password);
+    const success = await this.authService.login(email, password);
 
     if (success) {
-    this.router.navigateByUrl("home");
+      this.router.navigateByUrl("home");
     } else {
       this.errorMessage = "Invalid email or password";
     }

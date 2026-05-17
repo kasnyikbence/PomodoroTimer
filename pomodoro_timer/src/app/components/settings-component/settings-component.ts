@@ -1,4 +1,4 @@
-import { AsyncPipe } from "@angular/common";
+import {AsyncPipe} from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { SettingsService } from "../../services/settings-service";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
@@ -87,7 +87,7 @@ export class SettingsComponent {
           );
           this.timerService.resetTimer();
         }),
-        map(() => "Beállítások elmentve."),
+        map(() => "Settings saved!"),
         catchError(() => of("Mentési hiba történt.")),
       );
     }),

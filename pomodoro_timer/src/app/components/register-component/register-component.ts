@@ -41,7 +41,7 @@ export class RegisterComponent {
     { validators: this.passwordMatchValidator },
   );
 
-  onSubmit() {
+  async onSubmit() {
     if (!this.registerForm.valid) {
       if (this.registerForm.errors?.["passwordMismatch"]) {
         this.errorMessage = "Passwords do not match";
@@ -55,12 +55,12 @@ export class RegisterComponent {
     const email = this.emailControl.value;
     const password = this.passwordControl.value;
 
-    const success = this.authService.register(email, password);
+    const success = await this.authService.register(email, password);
 
     if (success) {
       this.router.navigateByUrl("login");
     } else {
-      this.errorMessage = "Email already exists";
+      this.errorMessage = "Email already exists or registration failed";
     }
   }
 

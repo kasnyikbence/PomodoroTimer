@@ -34,7 +34,7 @@ export class TimerService {
                     this.timeRemaining.set(longBreakTime * 60);
                 }
             }
-        }, {allowSignalWrites: true});
+        });
     }
 
     //Timer control methods

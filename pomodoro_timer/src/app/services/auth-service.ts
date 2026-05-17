@@ -1,44 +1,48 @@
-import { Injectable, signal } from "@angular/core";
+import { Injectable, signal, inject } from "@angular/core";
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, authState, User } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
+  private auth: Auth = inject(Auth);
 
-  public currentUser = signal<string | null>(localStorage.getItem("currentUser"));
+  public currentUser = signal<string | null>(null);
+
+  constructor() {
+    authState(this.auth).subscribe((user: User | null) => {
+      this.currentUser.set(user ? user.uid : null);
+    });
+  }
 
   isAuthenticated(): boolean {
     return this.currentUser() !== null;
   }
 
-  //register
-  register(email: string, password: string): boolean {
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const userExists = users.some((user: { email: string }) => user.email === email);
-    if (userExists) {
+  // Register
+  async register(email: string, password: string): Promise<boolean> {
+    try {
+      await createUserWithEmailAndPassword(this.auth, email, password);
+      return true;
+    } catch (error) {
+      console.error("Registration error:", error);
       return false;
     }
-
-    users.push({ email, password });
-    localStorage.setItem("users", JSON.stringify(users));
-    return true;
   }
 
-  //login
-  login(email: string, password: string): boolean {
-    const users = JSON.parse(localStorage.getItem("users") || "[]");
-    const user = users.find((user: { email: string; password: string }) => user.email === email && user.password === password);
-    if (user) {
-      this.currentUser.set(email);
-      localStorage.setItem("currentUser", email);
+  // Login
+  async login(email: string, password: string): Promise<boolean> {
+    try {
+      await signInWithEmailAndPassword(this.auth, email, password);
       return true;
+    } catch (error) {
+      console.error("Login error:", error);
+      return false; // Rossz email vagy jelszó
     }
-    return false;
   }
 
-  //logout
-  logout(): void {
-    this.currentUser.set(null);
-    localStorage.removeItem("currentUser");
+  // Logout
+  async logout(): Promise<void> {
+    await signOut(this.auth);
   }
 }
