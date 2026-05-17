@@ -24,7 +24,6 @@
       <label>Long Break Time (minutes): </label>
       <input type="number" formControlName="longBreakTime" />
     </div>
-    <span class="save-message">{{ saveMessage$ | async }}</span>
-    <button class="submit-button" type="submit" [disabled]="!(canSave$ | async)">Save Settings</button>
+    <button class="submit-button" type="submit" [disabled]="settingsForm.invalid">Save Settings</button>
   </form>
 </div>

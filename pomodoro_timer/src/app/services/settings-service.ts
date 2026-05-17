@@ -1,4 +1,4 @@
-import { Injectable, signal } from "@angular/core";
+import { Injectable, Input, input, signal } from "@angular/core";
 
 @Injectable({
   providedIn: "root",
@@ -16,18 +16,23 @@ export class SettingsService {
   }
 
   private initIndexedDB(): void {
+    // Adatbázis létrehozása (ha még nem létezik) és megnyitása
     const request = indexedDB.open("settings-db", 1);
 
+    // Error kezelése az adatbázis létrehozásakor/megnyitásakor
     request.onerror = (event: any) => {
       console.log("Database error: ", event.target.error);
     };
 
+    // Ha a verziószám növekedett (vagy most hoztuk létre az adatbázist), itt kell frissíteni az object store sémát
     request.onupgradeneeded = (event: any) => {
       const db: IDBDatabase = event.target.result;
 
+      // Object store létrehozása
       const objectStore = db.createObjectStore(this.objectStoreName, { keyPath: "id" });
     };
 
+    // Adatbázis sikeres létrehozásának&megnyitásának kezelése
     request.onsuccess = (event: any) => {
       this.db = event.target.result;
       this.loadSettings();
