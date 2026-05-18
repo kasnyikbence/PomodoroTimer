@@ -16,7 +16,7 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return this.currentUser() !== null;
+    return this.auth.currentUser !== null;
   }
 
   // Register
