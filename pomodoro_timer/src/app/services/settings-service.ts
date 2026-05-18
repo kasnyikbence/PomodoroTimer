@@ -21,7 +21,7 @@ export class SettingsService {
     this.initIndexedDB();
 
     window.addEventListener('online', () => {
-      console.log("Visszajött az internet, adatok szinkronizálása a felhőbe...");
+      console.log("Adatok szinkonizálása");
       this.syncToFirebase();
     });
   }

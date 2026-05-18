@@ -75,7 +75,7 @@ export class SettingsComponent {
     withLatestFrom(this.settingsChanges$),
     switchMap(([, settings]) => {
       if (!this.settingsForm.valid) {
-        return of("Hibás adatokat adtál meg.");
+        return of("Invalid data provided.");
       }
 
       return of(settings).pipe(
@@ -88,7 +88,7 @@ export class SettingsComponent {
           this.timerService.resetTimer();
         }),
         map(() => "Settings saved!"),
-        catchError(() => of("Mentési hiba történt.")),
+        catchError(() => of("Saving error occurred.")),
       );
     }),
     startWith(""),

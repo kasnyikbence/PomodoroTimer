@@ -37,7 +37,7 @@ export class AuthService {
       return true;
     } catch (error) {
       console.error("Login error:", error);
-      return false; // Rossz email vagy jelszó
+      return false;
     }
   }
 

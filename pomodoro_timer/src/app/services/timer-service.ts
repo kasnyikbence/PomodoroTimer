@@ -58,15 +58,13 @@ export class TimerService {
         this.timerIsRunning.set(true);
 
         this.interValId = window.setInterval(() => {
-            this.timeRemaining.update((time) => {
-                if (time <= 1) {
-                    this.endTimer();
-                    this.phaseSelection(this.currentPhase);
-                }
+            const current = this.timeRemaining();
 
-                console.log(`Time remaining: ${time - 1} seconds`);
-                return time - 1;
-            });
+            if (current <= 1){
+                setTimeout(() => this.endTimer(), 0);
+            }else{
+                this.timeRemaining.set(current - 1);
+            }
         }, 1000);
     }
 
@@ -106,7 +104,31 @@ export class TimerService {
     }
 
     endTimer(): void {
-        alert("Time's up!");
         this.stopTimer();
+        this.sendNotification();
+        this.phaseSelection(this.currentPhase);
+    }
+
+
+    sendNotification() {
+        const title = "Pomodoro Timer";
+        const message = this.currentPhase === "focus" ? "Time to take a break!" : "Time to focus!";
+
+        const options = {
+            body: message,
+            icon: "favicon.ico",
+            vibrate: [200, 100, 200, 100, 200],
+            requireInteraction: true
+        };
+
+        if ('Notification' in window && Notification.permission === "granted") {
+            navigator.serviceWorker.ready.then(registration => {
+                registration.showNotification(title, options);
+            }).catch(error => {
+                new Notification(title, options);
+            });
+        }else{
+            alert(message);
+        }
     }
 }
